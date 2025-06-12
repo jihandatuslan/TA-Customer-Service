@@ -1,6 +1,11 @@
 server:
   port: 8081
 
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
 spring:
   application:
     name: customer-service
@@ -14,7 +19,7 @@ spring:
       maximum-pool-size: 5
       cachePrepStmts: true
       prepStmtCacheSize: 250
-      prepStmtCacheSqlLimit: 2848
+      prepStmtCacheSqlLimit: 2048
       useServerPrepStmts : true
 
   jpa:
