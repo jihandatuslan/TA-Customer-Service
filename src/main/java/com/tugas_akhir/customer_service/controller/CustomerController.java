@@ -4,14 +4,25 @@ import com.tugas_akhir.customer_service.dto.SearchEmailRequest;
 import com.tugas_akhir.customer_service.entity.Customer;
 import com.tugas_akhir.customer_service.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
+@RefreshScope
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+
+    @Value("${spring.application.version}")
+    private String versionString;
+
+    @GetMapping("/version")
+    public String getVersion() {
+        return versionString;
+    }
 
     @PostMapping
     public Customer save(@RequestBody Customer customer) {
